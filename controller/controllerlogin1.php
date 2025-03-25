@@ -21,9 +21,7 @@ $req = "SELECT* FROM breif3.users ORDER BY id_user ASC";
 
            echo <<<html
            
-           <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
+           <table class="table">
                       <thead class=" text-primary">
                         <th>
                           ID
@@ -35,13 +33,16 @@ $req = "SELECT* FROM breif3.users ORDER BY id_user ASC";
                           Email
                         </th>
                         <th>
-                          password
-                        </th>
-                        <th>
                           Staus
                         </th>
                         <th>
                           Role
+                        </th>
+                        <th>
+                          Action
+                        </th>
+                        <th>
+                          Action
                         </th>
                       </thead>
                       <tbody>
@@ -55,25 +56,50 @@ $req = "SELECT* FROM breif3.users ORDER BY id_user ASC";
                           <td>
                             $email
                           </td>
-                           <td>
-                            $password
-                          </td>
                           <td>
                             $status
                           </td>
                           <td class="text-primary">
                             $role
                           </td>
+                          <td class="text-primary">
+                          <a href = 'tables.php?supprimer=$id_user'>supprimer</a>
+                          </td>
+                          <td class="text-primary">
+                          <a href = 'tables.php?desactiver=$id_user' onclick="return confirm('Voulez-vous vraiment désactiver cet utilisateur ?')">
+                                Désactiver</a>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
-                  </div>
-                </div>
        html;
        }
    } 
 
 
+   if(isset($_GET['supprimer'])){
+    $id_supprimer = $_GET['supprimer'];
+        $req2 = "DELETE FROM breif3.users WHERE id_user = $id_supprimer";
+        $result2 = $base->query($req2);
+        // if(!$result2){
+        //     $message1 = " un probleme est survenue, l'utilsateur n'a pas été supprimer";
+    
+        // }else{
+        //     $message1 = "utilisateur a bien été supprimer";
+    
+        // }
+    }
 
+    if(isset($_GET['desactiver'])){
+      $new_status = 'desactiver';
+      $id_desactiver = $_GET['desactiver'];
+      
+      // Utilisation d'une requête préparée
+      $req3 = "UPDATE breif3.users SET status = :status WHERE id_user = :id";
+      $result3 = $base->prepare($req3);
+      $result3->bindValue(':status', $new_status);
+      $result3->bindValue(':id', $id_desactiver);
+      $result3->execute();
+      }
    
    ?>

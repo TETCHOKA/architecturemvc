@@ -40,7 +40,7 @@ $user_name = $_SESSION['username'];
 <h3>Bienvenue <?php
  echo $user_name;
 ?></h3><a href="deconnexion.php" class="btn btn-danger">Déconnexion</a>       
-<a href="profiluser.php" class="btn btn-primary">Voir mes informations</a>   
+<a href="dashboard.php" class="btn btn-primary">Tableau de bordd</a>   
 				</div>
 		</form>
 	</div>

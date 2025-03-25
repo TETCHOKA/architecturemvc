@@ -12,6 +12,10 @@ $req = "SELECT* FROM breif3.users ORDER BY id_user ASC";
        while($ligne = $result->fetch(PDO::FETCH_ASSOC)){
         $id_user = $ligne['id_user'];
            $nom = $ligne['username'];
+           $email = $ligne['email'];
+           $password = $ligne['password'];
+           $role = $ligne['role_id'];
+           $status = $ligne['status'];
            echo <<<html
            <div class="card-body">
                   <div class="table-responsive">
@@ -23,6 +27,15 @@ $req = "SELECT* FROM breif3.users ORDER BY id_user ASC";
                         <th>
                           Name
                         </th>
+                        <th>
+                          email
+                        </th>
+                        <th>
+                          password
+                        </th>
+                        <th>
+                          status
+                        </th>
                       </thead>
                       <tbody>
                         <tr>
@@ -31,6 +44,15 @@ $req = "SELECT* FROM breif3.users ORDER BY id_user ASC";
                           </td>
                           <td>
                             $nom
+                          </td>
+                          <td>
+                            $email
+                          </td>
+                          <td>
+                            $password
+                          </td>
+                          <td>
+                            $status
                           </td>
                           <td><a href = 'supprimer.php?supprimer=$id_user'>supprimer</a></td> 
                         </tr>

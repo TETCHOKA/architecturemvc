@@ -1,6 +1,6 @@
 <?php
 
-require_once("C:/xampp1/htdocs/breif3/controller/suuprimerController.php")
+//require_once("C:/xampp1/htdocs/breif3/controller/suuprimerController.php")
 ?>
 
 <!DOCTYPE html>
